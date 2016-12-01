@@ -1,0 +1,114 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="card-box">
+
+        <h4 class="header-title m-t-0 m-b-30">{{title}}</h4>
+
+        <input type="file" class="dropify" data-height="300" />
+      </div>
+    </div>
+    <!-- end col -->
+    <div class="col-sm-8">
+      <div class="card-box">
+
+
+        <div class="row">
+
+          <form class="form-horizontal" role="form" #myForm="ngForm" >
+            <div>
+              <button type="submit" (click)="onSubmit(myForm.value||json)"  *ngIf="title=='Add New Company'">Submit</button>
+              <button (click)="onSave(myForm.value||json)" *ngIf="title=='Company Detail'">Save</button>
+              <button (click)="onDelete()" *ngIf="title=='Company Detail'">Delete</button>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Name(*)</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="Name" name="Name" placeholder="Company Full Name" [ngModel]=selecteditem.Name>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Short Name(*)</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="ShortName" name="ShortName" placeholder="Short Name" [ngModel]=selecteditem.ShortName>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Address</label>
+                <div class="col-md-8">
+                  <textarea class="form-control" id="Address" name="Address" rows="5" [ngModel]=selecteditem.Address></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Latitude</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="Latitude" name="Latitude" [ngModel]=selecteditem.Latitude>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Longtitude</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="Longitude" name="Longitude" [ngModel]=selecteditem.Longitude>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- end col -->
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Web Site</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="CompanyWebSite" name="CompanyWebSite" [ngModel]=selecteditem.CompanyWebSite>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Contact</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="ContactName" name="ContactName" [ngModel]=selecteditem.ContactName>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Phone</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="ContactPhone" name="ContactPhone" [ngModel]=selecteditem.ContactPhone>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="example-email">Email</label>
+                <div class="col-sm-8">
+                  <input type="email" id="ContactEmail" name="ContactEmail" class="form-control" placeholder="Email" [ngModel]=selecteditem.ContactEmail>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">CultureInfo</label>
+                <div class="col-sm-8">
+                  <select class="form-control" id="CultureInfoId" name="CultureInfoId" [ngModel]=selecteditem.CultureInfoId>
+                                                    <option>zh-tw</option>
+                                                    <option>en-us</option>
+
+                                                </select>
+                </div>
+              </div>
+
+            </div>
+            <!-- end col -->
+          </form>
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+    <!-- end col -->
+  </div>
+</div>
+
+<hr>
+<div class="container">
+  <pre>
+    {{ myForm.value | json }}
+  </pre>
+</div>
