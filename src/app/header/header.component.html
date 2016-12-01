@@ -3,18 +3,8 @@
 <button (click)="onClickAddCompany()">Add New Company</button>
 <button (click)="onClickEmployee()">Employee</button>
 <button (click)="onClickAddEmployee()">Add new Employee</button>
-<div *ngIf="childTitle=='Company Detail'">
+<div *ngIf="childTitle">
 
   <app-company-table  [title]='childTitle'></app-company-table>
   
-</div>
-<div *ngIf="childTitle=='Add New Company'">
-
-  <app-company-table  [title]='childTitle'></app-company-table>
-</div>
-<div *ngIf="childTitle=='Employee Detail'">
-  <app-company-table  [title]='childTitle'></app-company-table>
-</div>
-<div *ngIf="childTitle=='Add New Employee'">
-  <app-company-table  [title]='childTitle'></app-company-table>
 </div>

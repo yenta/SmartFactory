@@ -13,8 +13,6 @@ declare var $: any;
 export class CompanyTableComponent implements AfterViewChecked {
 
   selectedCompany: CompanyTableElement = { Id: 0, Name: "", ShortName: "", ContactName: "", CompanyWebSite: "", ContactEmail: "", ContactPhone: "", Address: "", CultureInfoId: "", CultureInfoName: "", LogoURL: "", Latitude: 0, Longitude: 0 };
-  myHero: CompanyTableElement;
-
 
   @Input() title: string;
 
@@ -22,14 +20,14 @@ export class CompanyTableComponent implements AfterViewChecked {
 
   constructor(private _companyService: CompanyService) { this.getCompanyTableElement(); }
   ngOnInit() {
-    console.log("Init");
+    
   }
   ngAfterViewInit() {
-    console.log("ngAfterView");
+    
   }
   ngAfterViewChecked() {
     //console.log("ngAfterViewChecked");
-    $('#datatable-responsive').DataTable();
+    //$('#datatable-responsive').DataTable();
   }
   getCompanyTableElement(): void {
     this._companyService.getCompanyTableElement()
@@ -56,11 +54,11 @@ export class CompanyTableComponent implements AfterViewChecked {
   DeleteTableElement(item: CompanyTableElement): void {
 
     var index = this.List.indexOf(item);
-    
-    this.List.splice(index,1);
+
+    this.List.splice(index, 1);
     this._companyService.deleteCompanyTableElement(item.Id)
       .subscribe(
-      message => alert("Delete "+message),
+      message => alert("Delete " + message),
       error => alert(error),
       () => this.List.splice(index, 1)
       )
@@ -70,7 +68,7 @@ export class CompanyTableComponent implements AfterViewChecked {
     item.Id = this.selectedCompany.Id;
     var index = this.List.indexOf(this.selectedCompany);
 
-    this.List.splice(index,1,item);
+    this.List.splice(index, 1, item);
     this._companyService.saveCompanyTableElement(item)
       .subscribe(
       message => alert("Save " + message),
@@ -80,13 +78,16 @@ export class CompanyTableComponent implements AfterViewChecked {
   }
 
   onRefresh() {
-    //this.List=this._companyService.getAnotherCompanyTableElement();
-    // this._companyService.deleteCompanyTableElement()
-    //   .subscribe(
-    //   data => alert(data),
-    //   error => alert(error),
-    //   () => console.log("Finished"));
-    $('#datatable-responsive').DataTable();
+
+    var oTable = $('#datatable-responsive').DataTable();
+    // oTable.clear();
+    // for (var k = 0; k < this.List.length; k++) {
+     
+    //   oTable.row.add({"radio":"vv", "Name":"Cool","ShortName":"cc","ContactName":"dd","ContactPhone":"pp","ContactEmail":"hh","CultureInfoId":"xx"});
+    // }
+    oTable.draw();
+    
+    //$('#datatable-responsive').DataTable().clear().rows.add(this.List).draw();
   }
   onSelectionChange(CompanyTableElement) {
     this.selectedCompany = CompanyTableElement;
